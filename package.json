@@ -1,0 +1,44 @@
+{
+  "name": "synapse-rescue",
+  "version": "1.0.0",
+  "description": "SynapseRescue — Razer Synapse profile converter and backup tool",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:win": "electron-builder --win",
+    "pack": "electron-builder --win portable"
+  },
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "electron-store": "^8.1.0"
+  },
+  "devDependencies": {
+    "electron": "^40.6.1",
+    "electron-builder": "^26.8.1"
+  },
+  "author": "SynapseRescue",
+  "build": {
+    "appId": "com.synapserescue.app",
+    "productName": "SynapseRescue",
+    "copyright": "Copyright © 2025 SynapseRescue",
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "SynapseRescue"
+    },
+    "files": [
+      "**/*",
+      "!**/*.map",
+      "!.git",
+      "!*.md"
+    ]
+  }
+}

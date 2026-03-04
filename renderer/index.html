@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';">
+  <title>SynapseRescue</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- Title Bar -->
+  <div id="titlebar">
+    <div class="logo">
+      <div class="logo-icon">SR</div>
+      <span class="logo-text">SynapseRescue</span>
+      <span class="version">v1.0</span>
+    </div>
+  </div>
+
+  <!-- Main Layout -->
+  <div id="main">
+
+    <!-- Sidebar: Profile List -->
+    <div id="sidebar">
+      <div id="sidebar-header">
+        <h2>Profiles</h2>
+        <div class="scan-controls">
+          <button class="btn btn-primary" id="btn-scan">
+            <span id="scan-icon">&#x1F50D;</span> Scan Profiles
+          </button>
+          <button class="btn btn-secondary" id="btn-import">&#x1F4C2; Import</button>
+          <button class="btn btn-secondary btn-sm" id="btn-backup-all" title="Backup all profiles to ZIP" style="display:none;">
+            &#x1F4BE; Backup All
+          </button>
+        </div>
+      </div>
+
+      <div id="filter-bar">
+        <button class="filter-chip active" data-filter="all">All</button>
+        <button class="filter-chip" data-filter="synapse3">Synapse 3</button>
+        <button class="filter-chip" data-filter="synapse4">Synapse 4</button>
+        <button class="filter-chip" data-filter="unknown">Other</button>
+      </div>
+
+      <div id="profile-list">
+        <div class="no-profiles" id="list-placeholder">
+          Click <strong>Scan Profiles</strong> to find<br>Razer Synapse profiles on this PC.
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Panel -->
+    <div id="content">
+
+      <!-- Empty State -->
+      <div id="empty-state">
+        <div class="empty-icon">&#x1F5A5;</div>
+        <div class="empty-title">SynapseRescue</div>
+        <div class="empty-sub">
+          Scan for Razer Synapse profiles, then select one to view, convert, export, or back it up.
+          <br><br>
+          Supports <strong>Synapse 3</strong> (.synapse3) and <strong>Synapse 4</strong> (.synapse4) formats.
+          Can export to JSON, AutoHotkey (.ahk), or DockStation format.
+        </div>
+        <button class="btn btn-primary" id="btn-scan-hero">&#x1F50D; Scan for Profiles</button>
+      </div>
+
+      <!-- Profile Detail (hidden until selection) -->
+      <div id="profile-detail">
+
+        <div id="detail-header">
+          <div class="detail-title-block">
+            <div class="detail-filename" id="detail-filename">profile.synapse3</div>
+            <div class="detail-path" id="detail-path" title="Click to open folder"></div>
+          </div>
+          <span class="version-badge" id="detail-version-badge">S3</span>
+        </div>
+
+        <div id="action-bar">
+          <div class="action-group">
+            <span class="action-label">Convert</span>
+            <button class="btn btn-secondary btn-sm" id="btn-convert-s4">&#x21C4; → Synapse 4</button>
+            <button class="btn btn-secondary btn-sm" id="btn-convert-s3">&#x21C4; → Synapse 3</button>
+          </div>
+          <div class="divider"></div>
+          <div class="action-group">
+            <span class="action-label">Export</span>
+            <button class="btn btn-secondary btn-sm" id="btn-export-json">&#x1F4CB; JSON</button>
+            <button class="btn btn-secondary btn-sm" id="btn-export-ahk">&#x2328; AHK</button>
+            <button class="btn btn-secondary btn-sm" id="btn-export-dock">&#x1F4BB; DockStation</button>
+          </div>
+          <div class="divider"></div>
+          <div class="action-group">
+            <button class="btn btn-ghost btn-sm" id="btn-open-folder">&#x1F4C1; Open Folder</button>
+          </div>
+        </div>
+
+        <div id="detail-content">
+          <!-- Populated by JS -->
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Status Bar -->
+  <div id="statusbar">
+    <div class="status-dot" id="status-dot"></div>
+    <span id="status-text">Ready — click Scan to find profiles</span>
+    <span id="status-count"></span>
+  </div>
+
+</div>
+
+<!-- Toast Container -->
+<div id="toast-container"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
